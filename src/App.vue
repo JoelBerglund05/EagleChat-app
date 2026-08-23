@@ -8,6 +8,7 @@ const selectedConversationId = ref(null);
 
 const selectConversation = (conversationId) => {
     selectedConversationId.value = conversationId;
+    console.log('Selected conversation ID:', selectedConversationId.value)
 };
 
 const conversationCreated = (title, id) => {

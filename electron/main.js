@@ -28,6 +28,14 @@ ipcMain.handle('conversations:get', () => {
     `).all()
 })
 
+ipcMain.handle('conversations:getWithId', (event, id) => {
+    return db.prepare(`
+        SELECT *
+        FROM conversations
+        WHERE id = ?
+    `).get(id)
+})
+
 ipcMain.handle('conversations:create', (event, title) => {
     const result = db.prepare(`
         INSERT INTO conversations (title)

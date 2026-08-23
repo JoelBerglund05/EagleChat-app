@@ -21,7 +21,7 @@ const props = defineProps({
 
 watch(() => props.conversationId, async (newId) => {
     if (newId !== null) {
-        const fetchedConversation = await window.api.conversations.get(newId)
+        const fetchedConversation = await window.api.conversations.getWithId(newId)
         const fetchedMessages = await window.api.messages.get(newId)
         const formattedMessages = fetchedMessages.map((message) => {
             return {
@@ -34,7 +34,7 @@ watch(() => props.conversationId, async (newId) => {
             title: fetchedConversation.title,
             messages: formattedMessages
         }
-        emit('conversationCreated', conversation.value.title, conversation.value.conversationId)
+        console.log('Fetched conversation:', conversation.value, 'fetched conversations: ', fetchedConversation)
     } else {
         conversation.value = {
             conversationId: null,
